@@ -80,6 +80,7 @@ Planned features for upcoming releases include:
 * Thread-safe operations
 * Command-line interface for quick cache access
 * Optional lightweight server mode for experimentation
+* Concurrency for multiple user handling
 
 ---
 
