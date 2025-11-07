@@ -15,27 +15,24 @@ It currently supports five common data structures and exposes simple, intuitive 
 ## Features
 
 * In-memory key-value cache using Python dictionaries
-* Basic operations: `set`, `get`, `delete`, `exists`, and `flush`
+* Basic operations: `set`, `get`, `delete`, and `clear`
 * Supports multiple data structures:
 
   * Strings
   * Lists
   * Sets
   * Hashes
-  * Sorted Sets
 * Easy to use and lightweight — ideal for understanding Redis fundamentals
 
 ---
 
 ## Installation
 
-You can install Rapid Redis locally using:
+You can install Rapid Redis using 
 
 ```bash
-pip install -e .
+pip install rapid-redis
 ```
-
-(Ensure you run this from the project root directory where `setup.py` is located.)
 
 ---
 
@@ -43,30 +40,34 @@ pip install -e .
 
 ```python
 from rapid_redis import RapidCache
-from rapid_redis.datastructures import strings, lists, sets, hashes, sortedsets
+from rapid_redis.datastructures import strings, lists, sets, hash
 
 cache = RapidCache()
 
-# String operations
+# Basic cache operations
 cache.set("name", "Atharsh")
 print(cache.get("name"))  # Output: Atharsh
+cache.delete("name")
+cache.clear()  # Clear all data
+
+# String operations
+strings.set_string(cache, "username", "Atharsh")
+print(strings.get_string(cache, "username"))  # Output: Atharsh
 
 # List operations
 lists.lpush(cache, "mylist", 1, 2, 3)
 print(cache.get("mylist"))  # Output: [3, 2, 1]
+lists.rpush(cache, "mylist", 4)
+print(lists.lpop(cache, "mylist"))  # Output: 3
 
 # Set operations
 sets.sadd(cache, "myset", "a", "b", "c")
 print(sets.smembers(cache, "myset"))  # Output: {'a', 'b', 'c'}
 
 # Hash operations
-hashes.hset(cache, "user:1", "name", "Atharsh")
-print(hashes.hget(cache, "user:1", "name"))  # Output: Atharsh
-
-# Sorted set operations
-sortedsets.zadd(cache, "scores", 10, "Alice")
-sortedsets.zadd(cache, "scores", 5, "Bob")
-print(sortedsets.zrange(cache, "scores", 0, -1))  # Output: ['Bob', 'Alice']
+hash.hset(cache, "user:1", "name", "Atharsh")
+hash.hset(cache, "user:1", "age", 25)
+print(hash.hget(cache, "user:1", "name"))  # Output: Atharsh
 ```
 
 ---
@@ -75,7 +76,9 @@ print(sortedsets.zrange(cache, "scores", 0, -1))  # Output: ['Bob', 'Alice']
 
 Planned features for upcoming releases include:
 
+* Sorted Sets data structure support
 * TTL (Time-to-Live) support for expiring keys
+* Additional cache methods (`exists`, `flush`, etc.)
 * Persistent cache storage (saving data to disk)
 * Thread-safe operations
 * Command-line interface for quick cache access
