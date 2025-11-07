@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='rapid-redis',  
-    version='0.1.0',
+    version='0.1.1',
     description='A lightweight in-memory cache inspired by Redis (educational)',
     author='Atharsh K',
     author_email='atharshkrishnamoorthy@gmail.com',
