@@ -6,7 +6,7 @@ setup(
     description='A lightweight in-memory cache inspired by Redis (educational)',
     author='Atharsh K',
     author_email='atharshkrishnamoorthy@gmail.com',
-    url='https://github.com/AtharshKrishnamoorthy/rapid-redis',  
+    url='https://github.com/AtharshKrishnamoorthy/RAPID-REDIS.git',  
     packages=find_packages(),
     include_package_data=True,
     python_requires='>=3.7',
